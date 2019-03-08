@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
+@IonicPage()
 export class ListPage {
   selectedItem: any;
   icons: string[];

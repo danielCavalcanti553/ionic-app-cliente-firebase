@@ -1,0 +1,21 @@
+
+<ion-content padding>
+  <h1>Login</h1>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Usuário</ion-label>
+      <ion-input type="text" #usuario></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" #senha></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+  
+<button ion-button full (click)="login()">Entrar</button>
+<button ion-button color="light" full (click)="irParaCadastro()">Cadastro</button>
+</ion-content>

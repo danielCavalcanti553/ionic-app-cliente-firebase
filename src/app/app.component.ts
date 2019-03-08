@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,17 +13,21 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: string = 'HomePage'; // Ionic Page
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: string}>; // Ionic Page
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    public firebaseauth : AngularFireAuth) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+    this.pages = [ // Ionic Page
+      { title: 'Home', component:'HomePage' },
+      { title: 'List', component: 'ListPage' }
     ];
 
   }
@@ -34,7 +39,23 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
+
+    this.firebaseauth.authState
+    .subscribe(
+    user => {
+        if (user) {
+          this.rootPage = 'HomePage';
+        } else {
+          this.rootPage = 'LoginPage';
+        }
+      },
+      () => {
+        this.rootPage = 'HomePage';
+      }
+      );
+}
+  
+  
 
   openPage(page) {
     // Reset the content nav to have just this page
