@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config/firebase.config';
 
 @NgModule({
   declarations: [
