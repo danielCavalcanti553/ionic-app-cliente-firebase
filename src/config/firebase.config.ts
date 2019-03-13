@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyDOlC7_HD3GXGH4Ttc_8bLCH7MiyfgfTXc",
-  authDomain: "noticiasapp-5d2ac.firebaseapp.com",
-  databaseURL: "https://noticiasapp-5d2ac.firebaseio.com",
-  projectId: "noticiasapp-5d2ac",
-  storageBucket: "noticiasapp-5d2ac.appspot.com",
-  messagingSenderId: "294803693901"
+  apiKey: "AIzaSyBh1XwpjY2w_WYx9d6OvFhFhJYlG9DT0E4",
+  authDomain: "projeto2-895af.firebaseapp.com",
+  databaseURL: "https://projeto2-895af.firebaseio.com",
+  projectId: "projeto2-895af",
+  storageBucket: "projeto2-895af.appspot.com",
+  messagingSenderId: "429058088500"
   };

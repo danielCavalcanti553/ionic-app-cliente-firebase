@@ -28,7 +28,8 @@ export class MyApp {
     this.pages = [ // Ionic Page
       { title: 'Home', component:'HomePage' },
       { title: 'List', component: 'ListPage' },
-      { title: 'Livros', component: 'LivrosPage' }
+      { title: 'Livros', component: 'LivrosPage' },
+      { title: 'Meus Dados', component: 'DadosPage' }
     ];
 
   }

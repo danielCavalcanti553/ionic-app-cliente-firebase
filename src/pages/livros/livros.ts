@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase'; // Passo 1: importar
 import { Livro } from '../../model/livro';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @IonicPage()
 @Component({
@@ -16,9 +17,10 @@ export class LivrosPage {
 
   // Armazenar Livros
   livros : Livro[] = [];
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.firestore.settings(this.settings);// Passo 3 : Aplicar
+   
   }
 
   ionViewDidLoad() {
@@ -36,10 +38,13 @@ export class LivrosPage {
         let liv = new Livro(doc.data());
         //console.log(liv);
         this.livros.push(liv);
+
+
         
       });
       //console.log(this.livros);
-    });
+    }).catch(err => { console.log(err ) })
+      
 
   }
 

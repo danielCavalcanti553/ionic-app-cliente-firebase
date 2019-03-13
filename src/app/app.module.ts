@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config/firebase.config';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { firebaseConfig } from '../config/firebase.config';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AngularFireAuth
+    AngularFireAuth,
+    AngularFireStorage
   ]
 })
 export class AppModule {}
