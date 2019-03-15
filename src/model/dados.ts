@@ -5,12 +5,10 @@ export class Dados{
     foto : string;
 
     constructor(){
-
     }
 
     setDados(obj : any){
         this.nome = obj.nome;
         this.telefone = obj.telefone;
-        this.foto = obj.foto;
     }
 }

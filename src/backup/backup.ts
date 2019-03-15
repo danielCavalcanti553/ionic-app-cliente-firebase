@@ -26,7 +26,8 @@ export class DadosPage {
     docRef.get().then(doc=> {
 
       if (doc.exists) {
-        this.dados = new Dados(doc.data());
+        //this.dados = new Dados();
+        // this.dados = new Dados(doc.data());
         this.donwloadFoto();
     } else {
         
@@ -42,7 +43,7 @@ export class DadosPage {
         docRef.get().then(doc=> {
 
           if (doc.exists) {
-            this.dados = new Dados(doc.data());
+            //this.dados = new Dados(doc.data());
           }
 
           });

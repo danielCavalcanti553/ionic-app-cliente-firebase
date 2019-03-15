@@ -19,6 +19,21 @@
     <ion-item>
       <input type="file" (change)="enviaArquivo($event)"/>
     </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nome</ion-label>
+      <ion-input type="text" value="{{dados?.nome}}"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Telefone</ion-label>
+      <ion-input type="text" value="{{dados?.telefone}}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button full>Atualizar</button>
+    </ion-item>
+
   </ion-list>
 
 </ion-content>
