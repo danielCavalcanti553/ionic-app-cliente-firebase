@@ -1,7 +1,10 @@
 export class Post{
+
+    id: string;
     uid : string;
     nome : string;
     mensagem : string;
+    imagem : string;
 
     constructor(){}
 

@@ -20,8 +20,9 @@
       <ion-avatar item-start>
         <img src="img/marty-avatar.png">
       </ion-avatar>
-      <h2>{{p.nome}}</h2>
-     
+      <h2>{{p.nome}} </h2>
+      <span *ngIf="p.uid == uid" (click)="editar(p)" style="font-size: 12px">
+        Editar</span>
     </ion-item>
   
     <ion-card-content>
@@ -42,8 +43,8 @@
         </button>
       </ion-col>
       <ion-col align-self-center text-center>
-        <ion-note>
-          11h ago
+        <ion-note *ngIf="p.uid == uid" (click)="removerPost(p.id)">
+          <ion-icon name="trash"></ion-icon>
         </ion-note>
       </ion-col>
     </ion-row>

@@ -55,9 +55,12 @@ export class HomePage {
     postRef.get().then(query => {
       query.forEach(doc => {
         let p = new Post();
+        p.id = doc.id; // <<==
         p.setDados(doc.data());
+  
         this.posts.push(p);
       });
+      console.log(this.posts);
       
     });
     
@@ -77,15 +80,11 @@ export class HomePage {
         this.posts = [];
         this.getList();
         
-
       }).catch(err => {
         console.log(err.message);
       });
+
   }
-  
-  
-  
-  
   
   downloadFoto(uid : string) : any{
   
@@ -98,6 +97,23 @@ export class HomePage {
       return "https://www.gazetadopovo.com.br/blogs/dias-da-vida/wp-content/themes/padrao/imagens/perfil-blog.png";
     })
 
+  }
+
+  removerPost(id : string){
+
+   this.firestore.collection('post').doc('id').delete().then(()=> {
+      this.posts = [];
+      this.getList();
+    }).catch(function(error) {
+      
+    });
+
+    
+
+  }
+
+  editar(post : Post){
+    this.navCtrl.push('PostEditPage', {'post' : post})
   }
 
 
