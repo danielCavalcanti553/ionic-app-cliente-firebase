@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { Post } from '../../model/post';
+import { Cliente } from '../../model/cliente';
+
 
 
 @Component({
@@ -15,106 +16,40 @@ import { Post } from '../../model/post';
 export class HomePage {
   
   firestore = firebase.firestore();
-  formGroup : FormGroup;
   uid : string;
-  posts : Post[] = [];
+  clientes : Cliente[] = [];
+
   
   constructor(public navCtrl: NavController, 
     public menuCtrl : MenuController, 
     public firebaseauth : AngularFireAuth, 
-    public storage : AngularFireStorage,
-    public formBuilder: FormBuilder
+    public storage : AngularFireStorage
     ) {
 
       this.firebaseauth.authState.subscribe( user => {
         if (user) { this.uid = user.uid }
       });
       this.menuCtrl.enable(true);
-      this.form();
+      
       
   }
 
   ionViewDidLoad(){
-    this.getList();
-    
+    this.getList(); // Inicia a lista ao carregar a página
   }
 
-  form(){
-    this.formGroup = this.formBuilder.group({    
-      uid : ['', [Validators.required]],
-      nome: ['', [Validators.required]],
-      mensagem: ['', [Validators.required]]
-    });
-  }
-
-  // listar os posts
-  getList(){
-
-    var postRef = firebase.firestore().collection("post");
-
-    postRef.get().then(query => {
-      query.forEach(doc => {
-        let p = new Post();
-        p.id = doc.id; // <<==
-        p.setDados(doc.data());
-  
-        this.posts.push(p);
+  getList(){ // Retorna a lista de clientes
+    firebase.firestore().collection("cliente").get().then(query => { // Retorna coleção cliente
+      query.forEach(doc => { // Comando de repetição 
+        let c = new Cliente(); // A cada repetição, cria um objeto
+        c.id = doc.id; // Pega o ID do documento
+        c.setDados(doc.data()); // adiciona os dados do firebase no objeto
+        this.clientes.push(c); // adiciona na lista de clientes
       });
-      console.log(this.posts);
-      
     });
-    
   }
 
-  // Cadastrar
-  add(){
-
-    // será modificado
-    this.formGroup.controls['uid'].setValue(this.uid);
-    this.formGroup.controls['nome'].setValue('Daniel');
-    
-      // Tenta cadastrar a mensagem
-      this.firestore.collection("post").add(this.formGroup.value)
-        .then(ref => {
-        // Sucesso
-        this.posts = [];
-        this.getList();
-        
-      }).catch(err => {
-        console.log(err.message);
-      });
-
+  editar(c : Cliente){
+    this.navCtrl.push('ClienteDetalhePage',{'cliente' : c});
   }
-  
-  downloadFoto(uid : string) : any{
-  
-    let ref = 'usuario/'+'z1bnrOyow9YmjzN7iYI3s6DM7Iq2'+'.jpg'; // Pasta do servidor
-    let gsReference = firebase.storage().ref().child(ref); // Referência do arquivo no servidor
-  
-    gsReference.getDownloadURL().then( url=>{ // tenta baixar a foto do servidor
-      return url; // foto baixada com sucesso
-    }).catch(()=>{ // foto não existe, pega foto padrão
-      return "https://www.gazetadopovo.com.br/blogs/dias-da-vida/wp-content/themes/padrao/imagens/perfil-blog.png";
-    })
-
-  }
-
-  removerPost(id : string){
-
-   this.firestore.collection('post').doc('id').delete().then(()=> {
-      this.posts = [];
-      this.getList();
-    }).catch(function(error) {
-      
-    });
-
-    
-
-  }
-
-  editar(post : Post){
-    this.navCtrl.push('PostEditPage', {'post' : post})
-  }
-
-
 }

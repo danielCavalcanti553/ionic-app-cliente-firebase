@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Novo Cliente</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="formGroup" (ngSubmit)="add()">
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>E-mail</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Endereço</ion-label>
+      <ion-input formControlName="endereco" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Bairro</ion-label>
+      <ion-input formControlName="bairro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Cidade</ion-label>
+      <ion-input formControlName="cidade" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>CEP</ion-label>
+      <ion-input formControlName="cep" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Telefone</ion-label>
+      <ion-input formControlName="telefone" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full>Cadastrar</button>
+    </ion-item>
+  </ion-list> 
+  </form>
+</ion-content>

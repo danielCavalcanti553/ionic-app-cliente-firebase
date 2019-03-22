@@ -26,8 +26,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [ // Ionic Page
       { title: 'Home', component:'HomePage' },
-      { title: 'Livros', component: 'LivrosPage' },
-      { title: 'Meus Dados', component: 'DadosPage' },
+      { title: 'Novo Cliente', component: 'NovoClientePage' },
       { title: 'Logoff', component: 'LogoffPage' }
     ];
 
