@@ -12,7 +12,10 @@
     <ion-card *ngFor="let c of clientes">
         <ion-item>
           
-          <h2><ion-icon name="contact"></ion-icon> {{c.nome}} </h2>
+          <ion-avatar item-start>
+              <img src="{{c?.foto}}">
+            </ion-avatar>
+          <h2> {{c.nome}} </h2>
         </ion-item>
 
         <ion-card-content>
@@ -20,6 +23,7 @@
         </ion-card-content>
       
         <p><span (click)="editar(c)">EDITAR</span></p>
+        <p><span (click)="excluir(c)">Excluir</span></p>
       
       </ion-card>
 

@@ -9,8 +9,12 @@
 
 
 <ion-content padding>
+    <img src="{{cliente?.foto}}">
     <form [formGroup]="formGroup" (ngSubmit)="atualizar()">
   <ion-list>
+      <ion-item>
+          <input type="file" (change)="enviaArquivo($event)"/>
+        </ion-item>
 
     <ion-item>
       <ion-label stacked>Nome</ion-label>
@@ -47,7 +51,7 @@
       <ion-input formControlName="telefone" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <button ion-button full>Cadastrar</button>
+      <button ion-button full>Atualizar</button>
     </ion-item>
   </ion-list> 
   </form>
